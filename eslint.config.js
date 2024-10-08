@@ -59,6 +59,7 @@ export default [
 			],
 			'prefer-const': ['error', { ignoreReadBeforeAssign: true }],
 			'react/jsx-sort-props': 'warn',
+			'react/no-unescaped-entities': 'off',
 			'react/prop-types': 'off',
 			'react/react-in-jsx-scope': 'off',
 			'react/self-closing-comp': 'warn',
