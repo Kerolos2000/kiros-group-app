@@ -1,3 +1,3 @@
 export * from './Home';
-export * from './PreviewPage';
+export * from './previewPage';
 export * from './templateForm';

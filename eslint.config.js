@@ -40,6 +40,7 @@ export default [
 			'@typescript-eslint/ban-ts-comment': 'off',
 			'@typescript-eslint/no-empty-interface': 'off',
 			'@typescript-eslint/no-empty-object-type': 'off',
+			'@typescript-eslint/no-explicit-any': 'off',
 			'@typescript-eslint/no-non-null-assertion': 'off',
 			'@typescript-eslint/no-unused-vars': 'error',
 			'i18next/no-literal-string': 'off',
