@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Routes } from 'src/constants';
 import { Layout } from 'src/layout';
-import { Home, PreviewPage, TemplateForm } from 'src/pages';
+import { Home, PreviewPage, SavedTemplatesPage, TemplateForm } from 'src/pages';
 
 export const router = createBrowserRouter([
 	{
@@ -17,6 +17,10 @@ export const router = createBrowserRouter([
 			{
 				element: <PreviewPage />,
 				path: Routes.Preview,
+			},
+			{
+				element: <SavedTemplatesPage />,
+				path: Routes.SavedTemplates,
 			},
 		],
 		element: <Layout />,

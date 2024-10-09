@@ -1,20 +1,29 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
-import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	IconButton,
+	Stack,
+	TextField,
+	Typography,
+} from '@mui/material';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EllipsisTypography, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
+import { useStore } from 'src/hooks';
 import { gallerySchema } from 'src/validation';
 import { z } from 'zod';
 
-type GalleryFormInputs = z.infer<typeof gallerySchema>;
+export type GalleryFormInputs = z.infer<typeof gallerySchema>;
 
 export interface GalleryViewFormProps {}
 
 export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 	const navigate = useNavigate();
+	const { setGalleryData } = useStore();
 
 	const {
 		control,
@@ -40,8 +49,13 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 		});
 	};
 
+	const onSubmitAndSave = (data: GalleryFormInputs) => {
+		setGalleryData(data);
+		onSubmit(data);
+	};
+
 	return (
-		<StyledForm onSubmit={handleSubmit(onSubmit)}>
+		<StyledForm>
 			<EllipsisTypography>Enter your gallery details</EllipsisTypography>
 			<TextField
 				label='Gallery Title'
@@ -93,13 +107,23 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 					Add Image
 				</Button>
 			</Box>
-			<Button
-				style={{ marginTop: '16px' }}
-				type='submit'
-				variant='contained'
+			<Stack
+				direction='row'
+				spacing={1}
 			>
-				Submit
-			</Button>
+				<Button
+					onClick={handleSubmit(onSubmit)}
+					variant='contained'
+				>
+					Submit
+				</Button>
+				<Button
+					onClick={handleSubmit(onSubmitAndSave)}
+					variant='outlined'
+				>
+					Submit and Save
+				</Button>
+			</Stack>
 		</StyledForm>
 	);
 };

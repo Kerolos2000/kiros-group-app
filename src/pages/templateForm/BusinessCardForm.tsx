@@ -1,19 +1,21 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, TextField } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EllipsisTypography, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
+import { useStore } from 'src/hooks';
 import { businessCardSchema } from 'src/validation';
 import { z } from 'zod';
 
-type BusinessCardFormInputs = z.infer<typeof businessCardSchema>;
+export type BusinessCardFormInputs = z.infer<typeof businessCardSchema>;
 
 export interface BusinessCardFormProps {}
 
 export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 	const navigate = useNavigate();
+	const { setBusinessCardData } = useStore();
 
 	const {
 		formState: { errors },
@@ -32,8 +34,13 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 		});
 	};
 
+	const onSubmitAndSave = (data: BusinessCardFormInputs) => {
+		setBusinessCardData(data);
+		onSubmit(data);
+	};
+
 	return (
-		<StyledForm onSubmit={handleSubmit(onSubmit)}>
+		<StyledForm>
 			<EllipsisTypography>Enter your business card details</EllipsisTypography>
 			<TextField
 				label='Name'
@@ -70,12 +77,23 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 				fullWidth
 				helperText={errors.website?.message}
 			/>
-			<Button
-				type='submit'
-				variant='contained'
+			<Stack
+				direction='row'
+				spacing={1}
 			>
-				Submit
-			</Button>
+				<Button
+					onClick={handleSubmit(onSubmit)}
+					variant='contained'
+				>
+					Submit
+				</Button>
+				<Button
+					onClick={handleSubmit(onSubmitAndSave)}
+					variant='outlined'
+				>
+					Submit and Save
+				</Button>
+			</Stack>
 		</StyledForm>
 	);
 };

@@ -1,19 +1,21 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, TextField } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EllipsisTypography, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
+import { useStore } from 'src/hooks';
 import { letterSchema } from 'src/validation';
 import { z } from 'zod';
 
-type LetterFormInputs = z.infer<typeof letterSchema>;
+export type LetterFormInputs = z.infer<typeof letterSchema>;
 
 export interface LetterFormProps {}
 
 export const LetterForm: React.FC<LetterFormProps> = () => {
 	const navigate = useNavigate();
+	const { setLetterData } = useStore();
 
 	const {
 		formState: { errors },
@@ -24,7 +26,6 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 	});
 
 	const onSubmit = (data: LetterFormInputs) => {
-		console.log(data);
 		navigate(`/${Routes.Preview}`, {
 			state: {
 				template: Templates.letter,
@@ -32,8 +33,14 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 			},
 		});
 	};
+
+	const onSubmitAndSave = (data: LetterFormInputs) => {
+		setLetterData(data);
+		onSubmit(data);
+	};
+
 	return (
-		<StyledForm onSubmit={handleSubmit(onSubmit)}>
+		<StyledForm onSubmit={handleSubmit(onSubmitAndSave)}>
 			<EllipsisTypography>Enter your letter details</EllipsisTypography>
 			<TextField
 				label="Sender's Name"
@@ -66,12 +73,23 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 				multiline
 				rows={6}
 			/>
-			<Button
-				type='submit'
-				variant='contained'
+			<Stack
+				direction='row'
+				spacing={1}
 			>
-				Submit
-			</Button>
+				<Button
+					onClick={handleSubmit(onSubmit)}
+					variant='contained'
+				>
+					Submit
+				</Button>
+				<Button
+					onClick={handleSubmit(onSubmitAndSave)}
+					variant='outlined'
+				>
+					Submit and Save
+				</Button>
+			</Stack>
 		</StyledForm>
 	);
 };
