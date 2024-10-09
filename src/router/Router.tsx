@@ -1,7 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Routes } from 'src/constants';
 import { Layout } from 'src/layout';
-import { Home, PreviewPage, SavedTemplatesPage, TemplateForm } from 'src/pages';
+import {
+	DummyData,
+	Home,
+	PreviewPage,
+	SavedTemplatesPage,
+	TemplateForm,
+} from 'src/pages';
 
 export const router = createBrowserRouter([
 	{
@@ -21,6 +27,10 @@ export const router = createBrowserRouter([
 			{
 				element: <SavedTemplatesPage />,
 				path: Routes.SavedTemplates,
+			},
+			{
+				element: <DummyData />,
+				path: Routes.DummyData,
 			},
 		],
 		element: <Layout />,

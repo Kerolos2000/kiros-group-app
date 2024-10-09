@@ -18,6 +18,7 @@ export interface AppBarProps {}
 const links = [
 	{ name: 'Home', path: Routes.Home },
 	{ name: 'Saved Templates', path: Routes.SavedTemplates },
+	{ name: 'Dummy Data', path: Routes.DummyData },
 ];
 
 export const AppBar: React.FC<AppBarProps> = () => {

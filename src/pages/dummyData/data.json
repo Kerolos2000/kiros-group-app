@@ -1,0 +1,16 @@
+[
+  {
+    "name": "John Doe",
+    "jobTitle": "Software Engineer",
+    "email": "johndoe@example.com",
+    "phone": "+1 234 567 890",
+    "website": "www.johndoe.com"
+  },
+  {
+    "name": "Jane Smith",
+    "jobTitle": "Product Manager",
+    "email": "janesmith@example.com",
+    "phone": "+1 234 567 891",
+    "website": "www.janesmith.com"
+  }
+]

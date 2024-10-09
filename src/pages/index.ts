@@ -1,3 +1,4 @@
+export * from './dummyData';
 export * from './Home';
 export * from './previewPage';
 export * from './SavedTemplatesPage';
