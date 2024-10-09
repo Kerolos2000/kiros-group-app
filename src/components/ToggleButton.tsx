@@ -19,19 +19,16 @@ export const ToggleButton: React.FC<ToggleButtonProps> = () => {
 	return (
 		<Box
 			className='switch'
-			onClick={toggleSwitch}
 			sx={{
 				alignItems: 'center',
 				backgroundColor: isDark
 					? theme.palette.info.dark
 					: theme.palette.warning.light,
 				borderRadius: theme.shape.borderRadius * 5,
-				boxShadow: theme.shadows[5],
 				display: 'flex',
 				height: theme.spacing(4),
-				justifyContent: isDark ? 'flex-end' : 'flex-start',
-				padding: theme.spacing(0.5),
-				transition: 'all 0.5s ease',
+				position: 'relative',
+				transition: 'all 0.3s ease',
 				width: theme.spacing(10),
 			}}
 		>
@@ -47,6 +44,9 @@ export const ToggleButton: React.FC<ToggleButtonProps> = () => {
 					display: 'flex',
 					height: theme.spacing(3),
 					justifyContent: 'center',
+					position: 'absolute',
+					right: isDark ? theme.spacing(0.5) : theme.spacing(6.5),
+					transition: 'all 0.3s ease',
 					width: theme.spacing(3),
 				}}
 			>

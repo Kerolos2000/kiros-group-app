@@ -6,13 +6,14 @@ export interface LetterProps {}
 
 export const Letter: React.FC<LetterProps> = () => {
 	const { state } = useLocation();
+	const { date, letterBody, recipientName, senderName } = state;
 
 	return (
 		<>
-			<Typography>Sender's Name: {state.senderName}</Typography>
-			<Typography>Recipient's Name: {state.recipientName}</Typography>
-			<Typography>Date: {state.date}</Typography>
-			<Typography>Letter Body: {state.letterBody}</Typography>
+			<Typography>Sender's Name: {senderName}</Typography>
+			<Typography>Recipient's Name: {recipientName}</Typography>
+			<Typography>Date: {date}</Typography>
+			<Typography>Letter Body: {letterBody}</Typography>
 		</>
 	);
 };

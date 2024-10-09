@@ -1,18 +1,15 @@
-import { Box, Card } from '@mui/material';
+import { Box, BoxProps, Card } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
 
-export interface StyledFormProps {
-	onSubmit?: () => void;
-}
+export interface StyledFormProps extends BoxProps {}
 
 export const StyledForm: React.FC<
 	PropsWithChildren<StyledFormProps>
 > = props => {
-	const { children, onSubmit } = props;
+	const { children, onSubmit, sx } = props;
 
 	return (
 		<Box
-			component='form'
 			onSubmit={onSubmit}
 			sx={{
 				alignItems: 'center',
@@ -20,6 +17,7 @@ export const StyledForm: React.FC<
 				flex: 1,
 				justifyContent: 'center',
 				px: 2,
+				...sx,
 			}}
 		>
 			<Card

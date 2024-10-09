@@ -1,10 +1,11 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Grid2, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
 export interface GalleryViewProps {}
 
 export const GalleryView: React.FC<GalleryViewProps> = () => {
 	const { state } = useLocation();
+	const { galleryTitle, images } = state;
 
 	return (
 		<>
@@ -12,18 +13,14 @@ export const GalleryView: React.FC<GalleryViewProps> = () => {
 				gutterBottom
 				variant='h5'
 			>
-				Gallery Title: {state.galleryTitle}
+				Gallery Title: {galleryTitle}
 			</Typography>
-			<Box
-				display='grid'
-				gap={2}
-				gridTemplateColumns='repeat(auto-fill, minmax(150px, 1fr))'
-			>
-				{state.images.map(
+			<Grid2 container>
+				{images.map(
 					(image: { url: string; description?: string }, index: number) => (
-						<Box
+						<Grid2
 							key={index}
-							textAlign='center'
+							size={{ md: 4, sm: 6, xs: 12 }}
 						>
 							<Box
 								alt={`Image ${index + 1}`}
@@ -34,10 +31,10 @@ export const GalleryView: React.FC<GalleryViewProps> = () => {
 							{image.description && (
 								<Typography variant='body2'>{image.description}</Typography>
 							)}
-						</Box>
+						</Grid2>
 					),
 				)}
-			</Box>
+			</Grid2>
 		</>
 	);
 };

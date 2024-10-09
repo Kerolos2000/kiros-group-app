@@ -5,14 +5,15 @@ export interface BusinessCardProps {}
 
 export const BusinessCard: React.FC<BusinessCardProps> = () => {
 	const { state } = useLocation();
+	const { email, jobTitle, name, phone, website } = state;
 
 	return (
 		<>
-			<Typography>Name: {state.name}</Typography>
-			<Typography>Job Title: {state.jobTitle}</Typography>
-			<Typography>Email: {state.email}</Typography>
-			<Typography>Phone: {state.phone}</Typography>
-			<Typography>Website: {state.website}</Typography>
+			<Typography>Name: {name}</Typography>
+			<Typography>Job Title: {jobTitle}</Typography>
+			<Typography>Email: {email}</Typography>
+			<Typography>Phone: {phone}</Typography>
+			<Typography>Website: {website}</Typography>
 		</>
 	);
 };
