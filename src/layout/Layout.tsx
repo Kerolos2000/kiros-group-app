@@ -2,12 +2,27 @@ import { Box } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+import { AppBar } from './AppBar';
+import { Footer } from './Footer';
+
 export interface LayoutProps {}
 
 export const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = () => {
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-			<Outlet />
-		</Box>
+		<>
+			<AppBar />
+			<Box
+				sx={{
+					display: 'flex',
+					flex: 1,
+					flexDirection: 'column',
+					height: '100%',
+					p: 2,
+				}}
+			>
+				<Outlet />
+			</Box>
+			<Footer />
+		</>
 	);
 };

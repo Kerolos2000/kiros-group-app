@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { ThemeProvider } from './providers';
 import { router } from './router';
+import { GlobalStyles } from './themes';
 export interface AppProps {}
 
 export const App: React.FC<AppProps> = () => {
@@ -12,6 +13,7 @@ export const App: React.FC<AppProps> = () => {
 		<ThemeProvider>
 			<Analytics />
 			<CssBaseline />
+			<GlobalStyles />
 			<RouterProvider router={router} />
 		</ThemeProvider>
 	);

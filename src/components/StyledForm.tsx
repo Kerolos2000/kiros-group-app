@@ -17,7 +17,7 @@ export const StyledForm: React.FC<
 			sx={{
 				alignItems: 'center',
 				display: 'flex',
-				height: '100vh',
+				flex: 1,
 				justifyContent: 'center',
 				px: 2,
 			}}

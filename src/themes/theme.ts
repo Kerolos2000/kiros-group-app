@@ -3,46 +3,33 @@ import { ThemeOptions } from '@mui/material';
 export const darkTheme: ThemeOptions = {
 	palette: {
 		background: {
-			default: '#121212',
-			paper: '#0A0F11',
+			default: '#020f1b',
+			paper: '#010b15',
 		},
 		common: {
 			black: '#000000',
-			white: '#ffffff',
-		},
-		error: {
-			contrastText: '#ffffff',
-			main: '#d32f2f',
+			white: '#e0e0e0',
 		},
 		info: {
-			contrastText: '#ffffff',
-			main: '#0288d1',
+			dark: '#002e47',
+			main: '#005989',
 		},
 		mode: 'dark',
 		primary: {
-			contrastText: '#ffffff',
-			dark: '#005b63',
-			light: '#4dd3e3',
-			main: '#009fb5',
+			contrastText: '#e0e0e0',
+			dark: '#335d73',
+			light: '#89c5dc',
+			main: '#259cc4',
 		},
 		secondary: {
 			contrastText: '#ffffff',
-			dark: '#40575c',
-			light: '#d4eff4',
-			main: '#536d73',
-		},
-		success: {
-			contrastText: '#ffffff',
-			main: '#2e7d32',
+			dark: '#1f4b5e',
+			light: '#a8d8e8',
+			main: '#5ca8c9',
 		},
 		text: {
-			disabled: 'rgba(255, 255, 255, 0.5)',
-			primary: '#ffffff',
+			primary: '#e0e0e0',
 			secondary: '#cfd8dc',
-		},
-		warning: {
-			contrastText: '#ffffff',
-			main: '#ff9800',
 		},
 	},
 	shape: {
@@ -53,46 +40,34 @@ export const darkTheme: ThemeOptions = {
 export const lightTheme: ThemeOptions = {
 	palette: {
 		background: {
-			default: '#f1ffff',
-			paper: '#e1f9ff',
+			default: '#e9f6ff',
+			paper: '#dfefff',
 		},
 		common: {
-			black: '#000000',
+			black: '#2C3E50',
 			white: '#ffffff',
-		},
-		error: {
-			contrastText: '#ffffff',
-			main: '#ba1a1a',
-		},
-		info: {
-			contrastText: '#ffffff',
-			main: '#006688',
 		},
 		mode: 'light',
 		primary: {
 			contrastText: '#ffffff',
-			dark: '#004e59',
-			light: '#51d7ef',
-			main: '#006876',
+			dark: '#4c8ea3',
+			light: '#b0e4f2',
+			main: '#006180',
 		},
 		secondary: {
 			contrastText: '#ffffff',
-			dark: '#334a50',
-			light: '#cde7ed',
-			main: '#4a6268',
-		},
-		success: {
-			contrastText: '#ffffff',
-			main: '#006d43',
+			dark: '#508fa5',
+			light: '#c4edf5',
+			main: '#99d2e6',
 		},
 		text: {
-			disabled: 'rgba(25, 28, 29, 0.38)',
-			primary: '#191c1d',
+			primary: '#2C3E50',
 			secondary: '#6f797b',
 		},
 		warning: {
-			contrastText: '#ffffff',
-			main: '#795900',
+			dark: '#FFB300',
+			light: '#ffe2b7',
+			main: '#ffb13c',
 		},
 	},
 	shape: {
