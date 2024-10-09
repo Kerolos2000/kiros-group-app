@@ -1,11 +1,18 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
-export interface BusinessCardProps {}
+import { BusinessCardFormTypes } from '../templateForm';
 
-export const BusinessCard: React.FC<BusinessCardProps> = () => {
+export interface BusinessCardProps {
+	data?: BusinessCardFormTypes;
+	onEdit?: (data: BusinessCardFormTypes) => void;
+}
+
+export const BusinessCard: React.FC<BusinessCardProps> = props => {
 	const { state } = useLocation();
-	const { email, jobTitle, name, phone, website } = state;
+
+	const { data = state, onEdit } = props;
+	const { email, jobTitle, name, phone, website } = data;
 
 	return (
 		<>
@@ -14,6 +21,14 @@ export const BusinessCard: React.FC<BusinessCardProps> = () => {
 			<Typography>Email: {email}</Typography>
 			<Typography>Phone: {phone}</Typography>
 			<Typography>Website: {website}</Typography>
+			{onEdit ? (
+				<Button
+					onClick={() => onEdit(data)}
+					variant='contained'
+				>
+					Edit
+				</Button>
+			) : null}
 		</>
 	);
 };

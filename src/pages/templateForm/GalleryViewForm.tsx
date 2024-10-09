@@ -17,7 +17,7 @@ import { useStore } from 'src/hooks';
 import { gallerySchema } from 'src/validation';
 import { z } from 'zod';
 
-export type GalleryFormInputs = z.infer<typeof gallerySchema>;
+export type GalleryFormTypes = z.infer<typeof gallerySchema>;
 
 export interface GalleryViewFormProps {}
 
@@ -30,7 +30,7 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 		formState: { errors },
 		handleSubmit,
 		register,
-	} = useForm<GalleryFormInputs>({
+	} = useForm<GalleryFormTypes>({
 		resolver: zodResolver(gallerySchema),
 	});
 
@@ -39,7 +39,7 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 		name: 'images',
 	});
 
-	const onSubmit = (data: GalleryFormInputs) => {
+	const onSubmit = (data: GalleryFormTypes) => {
 		console.log(data);
 		navigate(`/${Routes.Preview}`, {
 			state: {
@@ -49,7 +49,7 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 		});
 	};
 
-	const onSubmitAndSave = (data: GalleryFormInputs) => {
+	const onSubmitAndSave = (data: GalleryFormTypes) => {
 		setGalleryData(data);
 		onSubmit(data);
 	};

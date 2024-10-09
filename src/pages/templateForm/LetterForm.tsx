@@ -9,7 +9,7 @@ import { useStore } from 'src/hooks';
 import { letterSchema } from 'src/validation';
 import { z } from 'zod';
 
-export type LetterFormInputs = z.infer<typeof letterSchema>;
+export type LetterFormTypes = z.infer<typeof letterSchema>;
 
 export interface LetterFormProps {}
 
@@ -21,11 +21,11 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 		formState: { errors },
 		handleSubmit,
 		register,
-	} = useForm<LetterFormInputs>({
+	} = useForm<LetterFormTypes>({
 		resolver: zodResolver(letterSchema),
 	});
 
-	const onSubmit = (data: LetterFormInputs) => {
+	const onSubmit = (data: LetterFormTypes) => {
 		navigate(`/${Routes.Preview}`, {
 			state: {
 				template: Templates.letter,
@@ -34,7 +34,7 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 		});
 	};
 
-	const onSubmitAndSave = (data: LetterFormInputs) => {
+	const onSubmitAndSave = (data: LetterFormTypes) => {
 		setLetterData(data);
 		onSubmit(data);
 	};

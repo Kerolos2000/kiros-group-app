@@ -1,12 +1,19 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-export interface LetterProps {}
+import { LetterFormTypes } from '../templateForm';
 
-export const Letter: React.FC<LetterProps> = () => {
+export interface LetterProps {
+	data?: LetterFormTypes;
+	onEdit?: (data: LetterFormTypes) => void;
+}
+
+export const Letter: React.FC<LetterProps> = props => {
 	const { state } = useLocation();
-	const { date, letterBody, recipientName, senderName } = state;
+
+	const { data = state, onEdit } = props;
+	const { date, letterBody, recipientName, senderName } = data;
 
 	return (
 		<>
@@ -14,6 +21,14 @@ export const Letter: React.FC<LetterProps> = () => {
 			<Typography>Recipient's Name: {recipientName}</Typography>
 			<Typography>Date: {date}</Typography>
 			<Typography>Letter Body: {letterBody}</Typography>
+			{onEdit && (
+				<Button
+					onClick={() => onEdit(data)}
+					variant='contained'
+				>
+					Edit
+				</Button>
+			)}
 		</>
 	);
 };

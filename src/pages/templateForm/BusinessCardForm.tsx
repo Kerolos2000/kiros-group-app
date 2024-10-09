@@ -9,7 +9,7 @@ import { useStore } from 'src/hooks';
 import { businessCardSchema } from 'src/validation';
 import { z } from 'zod';
 
-export type BusinessCardFormInputs = z.infer<typeof businessCardSchema>;
+export type BusinessCardFormTypes = z.infer<typeof businessCardSchema>;
 
 export interface BusinessCardFormProps {}
 
@@ -21,11 +21,11 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 		formState: { errors },
 		handleSubmit,
 		register,
-	} = useForm<BusinessCardFormInputs>({
+	} = useForm<BusinessCardFormTypes>({
 		resolver: zodResolver(businessCardSchema),
 	});
 
-	const onSubmit = (data: BusinessCardFormInputs) => {
+	const onSubmit = (data: BusinessCardFormTypes) => {
 		navigate(`/${Routes.Preview}`, {
 			state: {
 				template: Templates.businessCard,
@@ -34,7 +34,7 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 		});
 	};
 
-	const onSubmitAndSave = (data: BusinessCardFormInputs) => {
+	const onSubmitAndSave = (data: BusinessCardFormTypes) => {
 		setBusinessCardData(data);
 		onSubmit(data);
 	};
