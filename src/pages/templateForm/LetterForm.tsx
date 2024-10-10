@@ -1,14 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Stack, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { EllipsisTypography, StyledForm } from 'src/components';
+import { EllipsisTypography, FormActions, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
 import { useStore } from 'src/hooks';
 import { letterSchema } from 'src/validation';
 import { v7 as uuid } from 'uuid';
 import { z } from 'zod';
+
+import { NotFoundPage } from '../NotFoundPage';
 
 export type LetterFormTypes = z.infer<typeof letterSchema>;
 
@@ -18,6 +20,10 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 	const navigate = useNavigate();
 	const { state } = useLocation();
 	const { setLetterData } = useStore();
+
+	if (!state) {
+		return <NotFoundPage />;
+	}
 
 	const {
 		formState: { errors },
@@ -81,34 +87,12 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 				multiline
 				rows={6}
 			/>
-			<Stack
-				direction='row'
-				spacing={1}
-			>
-				{state ? (
-					<Button
-						onClick={handleSubmit(onSubmitAndSave)}
-						variant='outlined'
-					>
-						Edit
-					</Button>
-				) : (
-					<>
-						<Button
-							onClick={handleSubmit(onSubmit)}
-							variant='contained'
-						>
-							Submit
-						</Button>
-						<Button
-							onClick={handleSubmit(onSubmitAndSave)}
-							variant='outlined'
-						>
-							Submit and Save
-						</Button>
-					</>
-				)}
-			</Stack>
+			<FormActions
+				handleSubmit={handleSubmit}
+				onSubmit={onSubmit}
+				onSubmitAndSave={onSubmitAndSave}
+				state={state}
+			/>
 		</StyledForm>
 	);
 };

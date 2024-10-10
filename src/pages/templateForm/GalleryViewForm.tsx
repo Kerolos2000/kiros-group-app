@@ -1,17 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
-import {
-	Box,
-	Button,
-	IconButton,
-	Stack,
-	TextField,
-	Typography,
-} from '@mui/material';
+import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { EllipsisTypography, StyledForm } from 'src/components';
+import { EllipsisTypography, FormActions, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
 import { useStore } from 'src/hooks';
 import { gallerySchema } from 'src/validation';
@@ -115,34 +108,12 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 					Add Image
 				</Button>
 			</Box>
-			<Stack
-				direction='row'
-				spacing={1}
-			>
-				{state ? (
-					<Button
-						onClick={handleSubmit(onSubmitAndSave)}
-						variant='outlined'
-					>
-						Edit
-					</Button>
-				) : (
-					<>
-						<Button
-							onClick={handleSubmit(onSubmit)}
-							variant='contained'
-						>
-							Submit
-						</Button>
-						<Button
-							onClick={handleSubmit(onSubmitAndSave)}
-							variant='outlined'
-						>
-							Submit and Save
-						</Button>
-					</>
-				)}
-			</Stack>
+			<FormActions
+				handleSubmit={handleSubmit}
+				onSubmit={onSubmit}
+				onSubmitAndSave={onSubmitAndSave}
+				state={state}
+			/>
 		</StyledForm>
 	);
 };

@@ -1,9 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Stack, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { EllipsisTypography, StyledForm } from 'src/components';
+import { EllipsisTypography, FormActions, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
 import { useStore } from 'src/hooks';
 import { businessCardSchema } from 'src/validation';
@@ -85,34 +85,12 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 				fullWidth
 				helperText={errors.website?.message}
 			/>
-			<Stack
-				direction='row'
-				spacing={1}
-			>
-				{state ? (
-					<Button
-						onClick={handleSubmit(onSubmitAndSave)}
-						variant='outlined'
-					>
-						Edit
-					</Button>
-				) : (
-					<>
-						<Button
-							onClick={handleSubmit(onSubmit)}
-							variant='contained'
-						>
-							Submit
-						</Button>
-						<Button
-							onClick={handleSubmit(onSubmitAndSave)}
-							variant='outlined'
-						>
-							Submit and Save
-						</Button>
-					</>
-				)}
-			</Stack>
+			<FormActions
+				handleSubmit={handleSubmit}
+				onSubmit={onSubmit}
+				onSubmitAndSave={onSubmitAndSave}
+				state={state}
+			/>
 		</StyledForm>
 	);
 };
