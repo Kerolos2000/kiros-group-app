@@ -1,50 +1,83 @@
-# React + TypeScript + Vite
+# Project: Dynamic Page Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based web application that enables users to create and customize their own pages using three predefined templates: Business Card, Gallery View, and Letter. The application allows users to input dummy data, which is then displayed in the selected template format.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Template Selection: Users can choose from three templates.
+- Dynamic Page Generation: Customized pages generated based on user input.
+- Responsive Design: All pages render properly across different screen sizes.
+- State Management: Uses Zustand for lightweight state management.
+- Form Handling: Utilizes React Hook Form for input validation and management.
+- API Simulation: Simulated API calls using Axios for data fetching.
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Ensure you have the following installed before starting:
 
-- Configure the top-level `parserOptions` property like this:
+- **Node.js**: `v20.15.0` or later.
+- **Yarn**: For managing dependencies.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Setup Instructions
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Kerolos2000/kiros-group-app
+   cd kiros-group-app
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   yarn install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   yarn dev
+   ```
+
+   The development server will be available at [http://localhost:5173](http://localhost:5173).
+
+## Available Scripts
+
+- `dev`: Starts the Vite development server.
+- `commit`: for publish commit in github.
+- `lint`: Lints the project files using ESLint.
+
+## Project Structure
+
+```bash
+├── src/
+│   ├── components/      # Reusable React components
+│   ├── constants/       # Static constants
+│   ├── hooks/           # Custom React hooks
+│   ├── layout/          # Layout components for structuring the app
+│   ├── pages/           # Pages for the application
+│   ├── providers/       # Context and providers for state management
+│   ├── router/          # Routing configuration
+│   ├── themes/          # Theme customization and settings
+│   ├── App.tsx          # Root application file
+│   └── main.tsx         # Entry point for the application
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Tech Stack
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **React**: Frontend library for building user interfaces.
+- **MUI**: UI library for building React components.
+- **Zustand**: State management for global state.
+- **React Hook Form**: Form handling management.
+- **Zod**: Form handling validation.
+- **React Query**: For server-side data management.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Contribution
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.

@@ -7,7 +7,7 @@
     "commit": "git cz",
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint ./src --fix",
     "preview": "vite preview"
   },
   "dependencies": {
