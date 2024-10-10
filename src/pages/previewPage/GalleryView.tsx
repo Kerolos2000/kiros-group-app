@@ -1,5 +1,6 @@
-import { Box, Button, Grid2, Typography } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { Box, Button, Grid2, Stack, Typography } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Templates } from 'src/constants';
 
 import { GalleryFormTypes } from '../templateForm';
 
@@ -9,10 +10,20 @@ export interface GalleryViewProps {
 }
 
 export const GalleryView: React.FC<GalleryViewProps> = props => {
+	const navigate = useNavigate();
 	const { state } = useLocation();
 
 	const { data = state, onEdit } = props;
 	const { galleryTitle, images } = data;
+
+	const Preview = (data: GalleryFormTypes) => {
+		navigate(`/${Routes.Preview}`, {
+			state: {
+				template: Templates.galleryView,
+				...data,
+			},
+		});
+	};
 
 	return (
 		<>
@@ -27,31 +38,46 @@ export const GalleryView: React.FC<GalleryViewProps> = props => {
 				spacing={2}
 			>
 				{images.map(
-					(image: { url: string; description?: string }, index: number) => (
-						<Grid2
-							key={index}
-							size={{ sm: 6 }}
-						>
-							<Box
-								alt={`Image ${index + 1}`}
-								component='img'
-								src={image.url}
-								width='100%'
-							/>
-							{image.description && (
-								<Typography variant='body2'>{image.description}</Typography>
-							)}
-						</Grid2>
-					),
+					(image: { url: string; description?: string }, index: number) => {
+						const { description, url } = image;
+
+						return (
+							<Grid2
+								key={index}
+								size={{ md: 4, sm: 6, xs: 12 }}
+							>
+								<Box
+									alt={`Image ${index + 1}`}
+									component='img'
+									src={url}
+									width='100%'
+								/>
+								{description && (
+									<Typography variant='body2'>{description}</Typography>
+								)}
+							</Grid2>
+						);
+					},
 				)}
 			</Grid2>
 			{onEdit ? (
-				<Button
-					onClick={() => onEdit(data)}
-					variant='contained'
+				<Stack
+					direction='row'
+					spacing={1}
 				>
-					Edit
-				</Button>
+					<Button
+						onClick={() => onEdit(data)}
+						variant='contained'
+					>
+						Edit
+					</Button>
+					<Button
+						onClick={() => Preview(data)}
+						variant='outlined'
+					>
+						Preview
+					</Button>
+				</Stack>
 			) : null}
 		</>
 	);

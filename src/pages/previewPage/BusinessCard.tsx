@@ -1,5 +1,6 @@
-import { Button, Typography } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { Button, Stack, Typography } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Templates } from 'src/constants';
 
 import { BusinessCardFormTypes } from '../templateForm';
 
@@ -9,10 +10,20 @@ export interface BusinessCardProps {
 }
 
 export const BusinessCard: React.FC<BusinessCardProps> = props => {
+	const navigate = useNavigate();
 	const { state } = useLocation();
 
 	const { data = state, onEdit } = props;
 	const { email, jobTitle, name, phone, website } = data;
+
+	const Preview = (data: BusinessCardFormTypes) => {
+		navigate(`/${Routes.Preview}`, {
+			state: {
+				template: Templates.businessCard,
+				...data,
+			},
+		});
+	};
 
 	return (
 		<>
@@ -22,12 +33,23 @@ export const BusinessCard: React.FC<BusinessCardProps> = props => {
 			<Typography>Phone: {phone}</Typography>
 			<Typography>Website: {website}</Typography>
 			{onEdit ? (
-				<Button
-					onClick={() => onEdit(data)}
-					variant='contained'
+				<Stack
+					direction='row'
+					spacing={1}
 				>
-					Edit
-				</Button>
+					<Button
+						onClick={() => onEdit(data)}
+						variant='contained'
+					>
+						Edit
+					</Button>
+					<Button
+						onClick={() => Preview(data)}
+						variant='outlined'
+					>
+						Preview
+					</Button>
+				</Stack>
 			) : null}
 		</>
 	);

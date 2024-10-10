@@ -1,6 +1,7 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Templates } from 'src/constants';
 
 import { LetterFormTypes } from '../templateForm';
 
@@ -10,10 +11,20 @@ export interface LetterProps {
 }
 
 export const Letter: React.FC<LetterProps> = props => {
+	const navigate = useNavigate();
 	const { state } = useLocation();
 
 	const { data = state, onEdit } = props;
 	const { date, letterBody, recipientName, senderName } = data;
+
+	const Preview = (data: LetterFormTypes) => {
+		navigate(`/${Routes.Preview}`, {
+			state: {
+				template: Templates.letter,
+				...data,
+			},
+		});
+	};
 
 	return (
 		<>
@@ -21,14 +32,25 @@ export const Letter: React.FC<LetterProps> = props => {
 			<Typography>Recipient's Name: {recipientName}</Typography>
 			<Typography>Date: {date}</Typography>
 			<Typography>Letter Body: {letterBody}</Typography>
-			{onEdit && (
-				<Button
-					onClick={() => onEdit(data)}
-					variant='contained'
+			{onEdit ? (
+				<Stack
+					direction='row'
+					spacing={1}
 				>
-					Edit
-				</Button>
-			)}
+					<Button
+						onClick={() => onEdit(data)}
+						variant='contained'
+					>
+						Edit
+					</Button>
+					<Button
+						onClick={() => Preview(data)}
+						variant='outlined'
+					>
+						Preview
+					</Button>
+				</Stack>
+			) : null}
 		</>
 	);
 };
