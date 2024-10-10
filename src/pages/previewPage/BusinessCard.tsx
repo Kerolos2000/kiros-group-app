@@ -1,6 +1,8 @@
-import { Button, Stack, Typography } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Routes, Templates } from 'src/constants';
+import { Typography } from '@mui/material';
+import { useLocation } from 'react-router-dom';
+import { PreviewActions } from 'src/components';
+import { Templates } from 'src/constants';
+import { useNavigateToPreview } from 'src/hooks';
 
 import { BusinessCardFormTypes } from '../templateForm';
 
@@ -10,20 +12,11 @@ export interface BusinessCardProps {
 }
 
 export const BusinessCard: React.FC<BusinessCardProps> = props => {
-	const navigate = useNavigate();
 	const { state } = useLocation();
+	const { navigateToPreview } = useNavigateToPreview();
 
 	const { data = state, onEdit } = props;
 	const { email, jobTitle, name, phone, website } = data;
-
-	const Preview = (data: BusinessCardFormTypes) => {
-		navigate(`/${Routes.Preview}`, {
-			state: {
-				template: Templates.businessCard,
-				...data,
-			},
-		});
-	};
 
 	return (
 		<>
@@ -32,25 +25,11 @@ export const BusinessCard: React.FC<BusinessCardProps> = props => {
 			<Typography>Email: {email}</Typography>
 			<Typography>Phone: {phone}</Typography>
 			<Typography>Website: {website}</Typography>
-			{onEdit ? (
-				<Stack
-					direction='row'
-					spacing={1}
-				>
-					<Button
-						onClick={() => onEdit(data)}
-						variant='contained'
-					>
-						Edit
-					</Button>
-					<Button
-						onClick={() => Preview(data)}
-						variant='outlined'
-					>
-						Preview
-					</Button>
-				</Stack>
-			) : null}
+			<PreviewActions
+				data={data}
+				onEdit={onEdit}
+				onPreview={() => navigateToPreview(data, Templates.businessCard)}
+			/>
 		</>
 	);
 };

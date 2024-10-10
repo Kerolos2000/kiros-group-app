@@ -2,10 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { EllipsisTypography, FormActions, StyledForm } from 'src/components';
-import { Routes, Templates } from 'src/constants';
-import { useStore } from 'src/hooks';
+import { Templates } from 'src/constants';
+import { useNavigateToPreview, useStore } from 'src/hooks';
 import { letterSchema } from 'src/validation';
 import { v7 as uuid } from 'uuid';
 import { z } from 'zod';
@@ -17,9 +17,9 @@ export type LetterFormTypes = z.infer<typeof letterSchema>;
 export interface LetterFormProps {}
 
 export const LetterForm: React.FC<LetterFormProps> = () => {
-	const navigate = useNavigate();
 	const { state } = useLocation();
 	const { setLetterData } = useStore();
+	const { navigateToPreview } = useNavigateToPreview();
 
 	if (!state) {
 		return <NotFoundPage />;
@@ -35,12 +35,7 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 	});
 
 	const onSubmit = (data: LetterFormTypes) => {
-		navigate(`/${Routes.Preview}`, {
-			state: {
-				template: Templates.letter,
-				...data,
-			},
-		});
+		navigateToPreview(data, Templates.businessCard);
 	};
 
 	const onSubmitAndSave = (data: LetterFormTypes) => {

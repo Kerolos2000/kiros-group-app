@@ -3,10 +3,10 @@ import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { EllipsisTypography, FormActions, StyledForm } from 'src/components';
-import { Routes, Templates } from 'src/constants';
-import { useStore } from 'src/hooks';
+import { Templates } from 'src/constants';
+import { useNavigateToPreview, useStore } from 'src/hooks';
 import { gallerySchema } from 'src/validation';
 import { v7 as uuid } from 'uuid';
 import { z } from 'zod';
@@ -16,9 +16,9 @@ export type GalleryFormTypes = z.infer<typeof gallerySchema>;
 export interface GalleryViewFormProps {}
 
 export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
-	const navigate = useNavigate();
 	const { state } = useLocation();
 	const { setGalleryData } = useStore();
+	const { navigateToPreview } = useNavigateToPreview();
 
 	const {
 		control,
@@ -36,13 +36,7 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 	});
 
 	const onSubmit = (data: GalleryFormTypes) => {
-		console.log(data);
-		navigate(`/${Routes.Preview}`, {
-			state: {
-				template: Templates.galleryView,
-				...data,
-			},
-		});
+		navigateToPreview(data, Templates.businessCard);
 	};
 
 	const onSubmitAndSave = (data: GalleryFormTypes) => {
