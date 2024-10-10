@@ -2,11 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Stack, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { EllipsisTypography, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
 import { useStore } from 'src/hooks';
 import { businessCardSchema } from 'src/validation';
+import { v7 as uuid } from 'uuid';
 import { z } from 'zod';
 
 export type BusinessCardFormTypes = z.infer<typeof businessCardSchema>;
@@ -15,6 +16,7 @@ export interface BusinessCardFormProps {}
 
 export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 	const navigate = useNavigate();
+	const { state } = useLocation();
 	const { setBusinessCardData } = useStore();
 
 	const {
@@ -22,6 +24,7 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 		handleSubmit,
 		register,
 	} = useForm<BusinessCardFormTypes>({
+		defaultValues: state,
 		resolver: zodResolver(businessCardSchema),
 	});
 
@@ -35,6 +38,11 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 	};
 
 	const onSubmitAndSave = (data: BusinessCardFormTypes) => {
+		if (state && state.id) {
+			data.id = state.id;
+		} else {
+			data.id = uuid();
+		}
 		setBusinessCardData(data);
 		onSubmit(data);
 	};
@@ -81,18 +89,29 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 				direction='row'
 				spacing={1}
 			>
-				<Button
-					onClick={handleSubmit(onSubmit)}
-					variant='contained'
-				>
-					Submit
-				</Button>
-				<Button
-					onClick={handleSubmit(onSubmitAndSave)}
-					variant='outlined'
-				>
-					Submit and Save
-				</Button>
+				{state ? (
+					<Button
+						onClick={handleSubmit(onSubmitAndSave)}
+						variant='outlined'
+					>
+						Edit
+					</Button>
+				) : (
+					<>
+						<Button
+							onClick={handleSubmit(onSubmit)}
+							variant='contained'
+						>
+							Submit
+						</Button>
+						<Button
+							onClick={handleSubmit(onSubmitAndSave)}
+							variant='outlined'
+						>
+							Submit and Save
+						</Button>
+					</>
+				)}
 			</Stack>
 		</StyledForm>
 	);

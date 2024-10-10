@@ -10,11 +10,12 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { EllipsisTypography, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
 import { useStore } from 'src/hooks';
 import { gallerySchema } from 'src/validation';
+import { v7 as uuid } from 'uuid';
 import { z } from 'zod';
 
 export type GalleryFormTypes = z.infer<typeof gallerySchema>;
@@ -23,6 +24,7 @@ export interface GalleryViewFormProps {}
 
 export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 	const navigate = useNavigate();
+	const { state } = useLocation();
 	const { setGalleryData } = useStore();
 
 	const {
@@ -31,6 +33,7 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 		handleSubmit,
 		register,
 	} = useForm<GalleryFormTypes>({
+		defaultValues: state,
 		resolver: zodResolver(gallerySchema),
 	});
 
@@ -50,6 +53,11 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 	};
 
 	const onSubmitAndSave = (data: GalleryFormTypes) => {
+		if (state && state.id) {
+			data.id = state.id;
+		} else {
+			data.id = uuid();
+		}
 		setGalleryData(data);
 		onSubmit(data);
 	};
@@ -111,18 +119,29 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 				direction='row'
 				spacing={1}
 			>
-				<Button
-					onClick={handleSubmit(onSubmit)}
-					variant='contained'
-				>
-					Submit
-				</Button>
-				<Button
-					onClick={handleSubmit(onSubmitAndSave)}
-					variant='outlined'
-				>
-					Submit and Save
-				</Button>
+				{state ? (
+					<Button
+						onClick={handleSubmit(onSubmitAndSave)}
+						variant='outlined'
+					>
+						Edit
+					</Button>
+				) : (
+					<>
+						<Button
+							onClick={handleSubmit(onSubmit)}
+							variant='contained'
+						>
+							Submit
+						</Button>
+						<Button
+							onClick={handleSubmit(onSubmitAndSave)}
+							variant='outlined'
+						>
+							Submit and Save
+						</Button>
+					</>
+				)}
 			</Stack>
 		</StyledForm>
 	);
