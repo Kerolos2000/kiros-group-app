@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { EllipsisTypography, StyledForm } from 'src/components';
 import { Templates } from 'src/constants';
 
+import { NotFoundPage } from '../NotFoundPage';
 import { BusinessCardForm } from './BusinessCardForm';
 import { GalleryViewForm } from './GalleryViewForm';
 import { LetterForm } from './LetterForm';
@@ -22,11 +22,7 @@ export const TemplateForm: React.FC<TemplateFormProps> = () => {
 			case Templates.letter:
 				return <LetterForm />;
 			default:
-				return (
-					<StyledForm>
-						<EllipsisTypography>Invalid template selected.</EllipsisTypography>
-					</StyledForm>
-				);
+				return <NotFoundPage />;
 		}
 	};
 

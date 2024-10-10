@@ -4,6 +4,7 @@ import { Layout } from 'src/layout';
 import {
 	DummyData,
 	Home,
+	NotFoundPage,
 	PreviewPage,
 	SavedTemplatesPage,
 	TemplateForm,
@@ -32,6 +33,7 @@ export const router = createBrowserRouter([
 				element: <DummyData />,
 				path: Routes.DummyData,
 			},
+			{ element: <NotFoundPage />, path: '*' },
 		],
 		element: <Layout />,
 	},

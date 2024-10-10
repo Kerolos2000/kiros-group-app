@@ -1,9 +1,9 @@
-import { Typography } from '@mui/material';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { EllipsisTypography, StyledForm } from 'src/components';
+import { StyledForm } from 'src/components';
 import { Templates } from 'src/constants';
 
+import { NotFoundPage } from '../NotFoundPage';
 import { BusinessCard } from './BusinessCard';
 import { GalleryView } from './GalleryView';
 import { Letter } from './Letter';
@@ -15,11 +15,7 @@ export const PreviewPage: React.FC<PreviewPageProps> = () => {
 	const { state } = location;
 
 	if (!state) {
-		return (
-			<StyledForm>
-				<EllipsisTypography>Invalid URL</EllipsisTypography>
-			</StyledForm>
-		);
+		return <NotFoundPage />;
 	}
 
 	const renderTemplate = () => {
@@ -30,8 +26,6 @@ export const PreviewPage: React.FC<PreviewPageProps> = () => {
 				return <GalleryView />;
 			case Templates.letter:
 				return <Letter />;
-			default:
-				return <Typography>Invalid template type</Typography>;
 		}
 	};
 
