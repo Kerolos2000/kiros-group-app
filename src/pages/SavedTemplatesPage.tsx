@@ -5,7 +5,11 @@ import { EllipsisTypography, StyledForm } from 'src/components';
 import { Routes, Templates } from 'src/constants';
 import { useStore } from 'src/hooks';
 
-import { BusinessCard, GalleryView, Letter } from './previewPage';
+import {
+	BusinessCardPreview,
+	GalleryViewPreview,
+	LetterPreview,
+} from './previewPage';
 import {
 	BusinessCardFormTypes,
 	GalleryFormTypes,
@@ -60,7 +64,7 @@ export const SavedTemplatesPage: React.FC = () => {
 										size={{ md: 4, sm: 6, xs: 12 }}
 									>
 										<StyledForm>
-											<BusinessCard
+											<BusinessCardPreview
 												data={data}
 												key={JSON.stringify(data)}
 												onEdit={data =>
@@ -87,7 +91,7 @@ export const SavedTemplatesPage: React.FC = () => {
 										size={{ md: 4, sm: 6, xs: 12 }}
 									>
 										<StyledForm>
-											<GalleryView
+											<GalleryViewPreview
 												data={data}
 												key={JSON.stringify(data)}
 												numberOfImages={6}
@@ -113,7 +117,7 @@ export const SavedTemplatesPage: React.FC = () => {
 										size={{ md: 4, sm: 6, xs: 12 }}
 									>
 										<StyledForm>
-											<Letter
+											<LetterPreview
 												data={data}
 												key={JSON.stringify(data)}
 												onEdit={data => handleEdit(Templates.letter, data)}

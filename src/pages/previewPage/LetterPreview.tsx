@@ -7,12 +7,12 @@ import { useNavigateToPreview } from 'src/hooks';
 
 import { LetterFormTypes } from '../templateForm';
 
-export interface LetterProps {
+export interface LetterPreviewProps {
 	data?: LetterFormTypes;
 	onEdit?: (data: LetterFormTypes) => void;
 }
 
-export const Letter: React.FC<LetterProps> = props => {
+export const LetterPreview: React.FC<LetterPreviewProps> = props => {
 	const theme = useTheme();
 	const { state } = useLocation();
 	const { navigateToPreview } = useNavigateToPreview();

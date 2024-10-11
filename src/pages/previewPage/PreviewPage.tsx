@@ -4,9 +4,9 @@ import { StyledForm } from 'src/components';
 import { Templates } from 'src/constants';
 
 import { NotFoundPage } from '../NotFoundPage';
-import { BusinessCard } from './BusinessCard';
-import { GalleryView } from './GalleryView';
-import { Letter } from './Letter';
+import { BusinessCardPreview } from './BusinessCardPreview';
+import { GalleryViewPreview } from './GalleryViewPreview';
+import { LetterPreview } from './LetterPreview';
 
 export interface PreviewPageProps {}
 
@@ -21,11 +21,11 @@ export const PreviewPage: React.FC<PreviewPageProps> = () => {
 	const renderTemplate = () => {
 		switch (state.template) {
 			case Templates.businessCard:
-				return <BusinessCard />;
+				return <BusinessCardPreview />;
 			case Templates.galleryView:
-				return <GalleryView />;
+				return <GalleryViewPreview />;
 			case Templates.letter:
-				return <Letter />;
+				return <LetterPreview />;
 		}
 	};
 

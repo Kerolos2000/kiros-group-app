@@ -11,13 +11,13 @@ interface Image {
 	description?: string;
 }
 
-export interface GalleryViewProps {
+export interface GalleryViewPreviewProps {
 	data?: GalleryFormTypes;
 	onEdit?: (data: GalleryFormTypes) => void;
 	numberOfImages?: number;
 }
 
-export const GalleryView: React.FC<GalleryViewProps> = props => {
+export const GalleryViewPreview: React.FC<GalleryViewPreviewProps> = props => {
 	const theme = useTheme();
 	const { state } = useLocation();
 	const { navigateToPreview } = useNavigateToPreview();

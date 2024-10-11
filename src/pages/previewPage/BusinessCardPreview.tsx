@@ -6,12 +6,14 @@ import { useNavigateToPreview } from 'src/hooks';
 
 import { BusinessCardFormTypes } from '../templateForm';
 
-export interface BusinessCardProps {
+export interface BusinessCardPreviewProps {
 	data?: BusinessCardFormTypes;
 	onEdit?: (data: BusinessCardFormTypes) => void;
 }
 
-export const BusinessCard: React.FC<BusinessCardProps> = props => {
+export const BusinessCardPreview: React.FC<
+	BusinessCardPreviewProps
+> = props => {
 	const theme = useTheme();
 	const { state } = useLocation();
 	const { navigateToPreview } = useNavigateToPreview();
