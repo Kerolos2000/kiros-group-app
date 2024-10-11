@@ -1,6 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
-import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	Grid2,
+	IconButton,
+	TextField,
+	Typography,
+} from '@mui/material';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
@@ -26,7 +33,10 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 		handleSubmit,
 		register,
 	} = useForm<GalleryFormTypes>({
-		defaultValues: state,
+		defaultValues: {
+			images: state?.images || Array(4).fill({ description: '', url: '' }),
+			...state,
+		},
 		resolver: zodResolver(gallerySchema),
 	});
 
@@ -36,7 +46,7 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 	});
 
 	const onSubmit = (data: GalleryFormTypes) => {
-		navigateToPreview(data, Templates.businessCard);
+		navigateToPreview(data, Templates.galleryView);
 	};
 
 	const onSubmitAndSave = (data: GalleryFormTypes) => {
@@ -71,32 +81,44 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 						key={field.id}
 						mt={2}
 					>
-						<TextField
-							label={`Image URL ${index + 1}`}
-							{...register(`images.${index}.url` as const)}
-							error={!!errors.images?.[index]?.url}
-							fullWidth
-							helperText={errors.images?.[index]?.url?.message}
-						/>
-						<TextField
-							label={`Image Description ${index + 1}`}
-							{...register(`images.${index}.description` as const)}
-							fullWidth
-						/>
-
-						<IconButton
-							color='error'
-							onClick={() => remove(index)}
-							size='large'
-							sx={{ height: 50, width: 50 }}
+						<Grid2
+							container
+							flex={1}
+							spacing={1}
 						>
-							<DeleteIcon />
-						</IconButton>
+							<Grid2 size={{ md: 6, xs: 12 }}>
+								<TextField
+									label={`Image URL ${index + 1}`}
+									{...register(`images.${index}.url`)}
+									error={!!errors.images?.[index]?.url}
+									fullWidth
+									helperText={errors.images?.[index]?.url?.message}
+								/>
+							</Grid2>
+							<Grid2 size={{ md: 6, xs: 12 }}>
+								<TextField
+									label={`Image Description ${index + 1}`}
+									{...register(`images.${index}.description`)}
+									fullWidth
+								/>
+							</Grid2>
+						</Grid2>
+
+						{fields.length > 4 ? (
+							<IconButton
+								color='error'
+								onClick={() => remove(index)}
+								size='large'
+								sx={{ height: 50, width: 50 }}
+							>
+								<DeleteIcon />
+							</IconButton>
+						) : null}
 					</Box>
 				))}
 				<Button
 					onClick={() => append({ description: '', url: '' })}
-					style={{ marginTop: '16px' }}
+					sx={{ mt: 2 }}
 					variant='outlined'
 				>
 					Add Image
