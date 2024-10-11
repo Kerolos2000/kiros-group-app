@@ -1,6 +1,6 @@
 import { Grid2, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import { EllipsisTypography, StyledForm } from 'src/components';
+import { EllipsisTypography, Loader, StyledForm } from 'src/components';
 
 import dataJson from './data.json';
 
@@ -27,10 +27,10 @@ export const DummyData: React.FC<DummyDataProps> = () => {
 	});
 
 	if (isLoading) {
-		return <EllipsisTypography>Loading...</EllipsisTypography>;
+		return <Loader />;
 	}
 
-	if (error instanceof Error) {
+	if (error) {
 		return (
 			<EllipsisTypography>
 				Error fetching data: {error.message}
