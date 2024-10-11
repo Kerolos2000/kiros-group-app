@@ -41,7 +41,6 @@ export const DummyData: React.FC<DummyDataProps> = () => {
 	return (
 		<Grid2
 			container
-			mt={2}
 			spacing={2}
 		>
 			{data?.map(item => {

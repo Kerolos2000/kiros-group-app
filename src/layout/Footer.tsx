@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = () => {
 				textAlign: 'center',
 			}}
 		>
-			<Typography>2024 © All Rights Reserved</Typography>
+			<Typography variant='h6'>2024 © All Rights Reserved</Typography>
 		</Card>
 	);
 };

@@ -77,14 +77,13 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 				{fields.map((field, index) => (
 					<Box
 						display='flex'
-						gap={1}
 						key={field.id}
 						mt={2}
 					>
 						<Grid2
 							container
 							flex={1}
-							spacing={1}
+							spacing={2}
 						>
 							<Grid2 size={{ md: 6, xs: 12 }}>
 								<TextField

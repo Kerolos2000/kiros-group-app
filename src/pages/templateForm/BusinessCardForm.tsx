@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TextField } from '@mui/material';
+import { Grid2, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
@@ -45,41 +45,50 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 	return (
 		<StyledForm>
 			<EllipsisTypography>Enter your business card details</EllipsisTypography>
-			<TextField
-				label='Name'
-				{...register('name')}
-				error={!!errors.name}
-				fullWidth
-				helperText={errors.name?.message}
-			/>
-			<TextField
-				label='Job Title'
-				{...register('jobTitle')}
-				error={!!errors.jobTitle}
-				fullWidth
-				helperText={errors.jobTitle?.message}
-			/>
-			<TextField
-				label='Email'
-				{...register('email')}
-				error={!!errors.email}
-				fullWidth
-				helperText={errors.email?.message}
-			/>
-			<TextField
-				label='Phone'
-				{...register('phone')}
-				error={!!errors.phone}
-				fullWidth
-				helperText={errors.phone?.message}
-			/>
-			<TextField
-				label='Website'
-				{...register('website')}
-				error={!!errors.website}
-				fullWidth
-				helperText={errors.website?.message}
-			/>
+			<Grid2
+				container
+				spacing={2}
+			>
+				<Grid2 size={{ md: 6, xs: 12 }}>
+					<TextField
+						label='Name'
+						{...register('name')}
+						error={!!errors.name}
+						fullWidth
+						helperText={errors.name?.message}
+					/>
+				</Grid2>
+				<Grid2 size={{ md: 6, xs: 12 }}>
+					<TextField
+						label='Job Title'
+						{...register('jobTitle')}
+						error={!!errors.jobTitle}
+						fullWidth
+						helperText={errors.jobTitle?.message}
+					/>
+				</Grid2>
+				<TextField
+					label='Email'
+					{...register('email')}
+					error={!!errors.email}
+					fullWidth
+					helperText={errors.email?.message}
+				/>
+				<TextField
+					label='Phone'
+					{...register('phone')}
+					error={!!errors.phone}
+					fullWidth
+					helperText={errors.phone?.message}
+				/>
+				<TextField
+					label='Website'
+					{...register('website')}
+					error={!!errors.website}
+					fullWidth
+					helperText={errors.website?.message}
+				/>
+			</Grid2>
 			<FormActions
 				handleSubmit={handleSubmit}
 				onSubmit={onSubmit}

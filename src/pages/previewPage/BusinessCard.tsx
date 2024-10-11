@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { PreviewActions } from 'src/components';
 import { Templates } from 'src/constants';
@@ -12,6 +12,7 @@ export interface BusinessCardProps {
 }
 
 export const BusinessCard: React.FC<BusinessCardProps> = props => {
+	const theme = useTheme();
 	const { state } = useLocation();
 	const { navigateToPreview } = useNavigateToPreview();
 
@@ -19,17 +20,42 @@ export const BusinessCard: React.FC<BusinessCardProps> = props => {
 	const { email, jobTitle, name, phone, website } = data;
 
 	return (
-		<>
-			<Typography>Name: {name}</Typography>
-			<Typography>Job Title: {jobTitle}</Typography>
-			<Typography>Email: {email}</Typography>
-			<Typography>Phone: {phone}</Typography>
-			<Typography>Website: {website}</Typography>
-			<PreviewActions
-				data={data}
-				onEdit={onEdit}
-				onPreview={() => navigateToPreview(data, Templates.businessCard)}
-			/>
-		</>
+		<Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+			<Typography
+				sx={{
+					color: theme.palette.text.primary,
+					fontWeight: 'bold',
+				}}
+				variant='h5'
+			>
+				{name}
+			</Typography>
+			<Typography
+				sx={{ color: theme.palette.text.secondary }}
+				variant='h6'
+			>
+				{jobTitle}
+			</Typography>
+			<Typography sx={{ color: theme.palette.text.disabled }}>
+				{email}
+			</Typography>
+			<Typography
+				sx={{
+					color: theme.palette.text.disabled,
+				}}
+			>
+				{phone}
+			</Typography>
+			<Typography sx={{ color: theme.palette.text.disabled }}>
+				{website}
+			</Typography>
+			<Box>
+				<PreviewActions
+					data={data}
+					onEdit={onEdit}
+					onPreview={() => navigateToPreview(data, Templates.businessCard)}
+				/>
+			</Box>
+		</Box>
 	);
 };

@@ -1,4 +1,4 @@
-import { Box, BoxProps, Card } from '@mui/material';
+import { Box, BoxProps, Card, useTheme } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
 
 export interface StyledFormProps extends BoxProps {}
@@ -8,6 +8,8 @@ export const StyledForm: React.FC<
 > = props => {
 	const { children, onSubmit, sx } = props;
 
+	const theme = useTheme();
+
 	return (
 		<Box
 			onSubmit={onSubmit}
@@ -16,7 +18,6 @@ export const StyledForm: React.FC<
 				display: 'flex',
 				flex: 1,
 				justifyContent: 'center',
-				px: 2,
 				...sx,
 			}}
 		>
@@ -27,8 +28,9 @@ export const StyledForm: React.FC<
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 2,
-					p: 4,
-					width: 700,
+					maxWidth: theme.breakpoints.values.md,
+					p: 2,
+					width: '100%',
 				}}
 			>
 				{children}

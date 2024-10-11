@@ -17,7 +17,7 @@ export const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = () => {
 					flex: 1,
 					flexDirection: 'column',
 					height: '100%',
-					p: 2,
+					p: 3,
 				}}
 			>
 				<Outlet />
