@@ -14,6 +14,7 @@ interface Image {
 export interface GalleryViewProps {
 	data?: GalleryFormTypes;
 	onEdit?: (data: GalleryFormTypes) => void;
+	numberOfImages?: number;
 }
 
 export const GalleryView: React.FC<GalleryViewProps> = props => {
@@ -21,7 +22,7 @@ export const GalleryView: React.FC<GalleryViewProps> = props => {
 	const { state } = useLocation();
 	const { navigateToPreview } = useNavigateToPreview();
 
-	const { data = state, onEdit } = props;
+	const { data = state, numberOfImages = data.images.length, onEdit } = props;
 	const { galleryTitle, images } = data;
 
 	return (
@@ -39,13 +40,13 @@ export const GalleryView: React.FC<GalleryViewProps> = props => {
 				container
 				spacing={2}
 			>
-				{images.map((image: Image) => {
+				{images.slice(0, numberOfImages).map((image: Image) => {
 					const { description, url } = image;
 
 					return (
 						<Grid2
 							key={JSON.stringify(image)}
-							size={{ md: 4, sm: 6, xs: 12 }}
+							size={{ md: 4, sm: 6 }}
 						>
 							<Box
 								alt={description}

@@ -81,27 +81,21 @@ export const SavedTemplatesPage: React.FC = () => {
 								container
 								spacing={2}
 							>
-								{galleryData.map(data => {
-									const images = data.images.slice(0, 4);
-									data = { ...data, images };
-
-									return (
-										<Grid2
-											key={JSON.stringify(data)}
-											size={{ md: 4, sm: 6, xs: 12 }}
-										>
-											<StyledForm>
-												<GalleryView
-													data={data}
-													key={JSON.stringify(data)}
-													onEdit={data =>
-														handleEdit(Templates.galleryView, data)
-													}
-												/>
-											</StyledForm>
-										</Grid2>
-									);
-								})}
+								{galleryData.map(data => (
+									<Grid2
+										key={JSON.stringify(data)}
+										size={{ md: 4, sm: 6, xs: 12 }}
+									>
+										<StyledForm>
+											<GalleryView
+												data={data}
+												key={JSON.stringify(data)}
+												numberOfImages={6}
+												onEdit={data => handleEdit(Templates.galleryView, data)}
+											/>
+										</StyledForm>
+									</Grid2>
+								))}
 							</Grid2>
 						</>
 					)}
