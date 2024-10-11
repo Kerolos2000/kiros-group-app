@@ -9,7 +9,7 @@ This is a React-based web application that enables users to create and customize
 - Responsive Design: All pages render properly across different screen sizes.
 - State Management: Uses Zustand for lightweight state management.
 - Form Handling: Utilizes React Hook Form for input validation and management.
-- API Simulation: Simulated API calls using Axios for data fetching.
+- API Simulation: Simulated API calls using React Query for data fetching.
 
 ## Prerequisites
 
