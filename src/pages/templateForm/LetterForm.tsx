@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Grid2, TextField } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
@@ -45,11 +45,11 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 	return (
 		<StyledForm onSubmit={handleSubmit(onSubmitAndSave)}>
 			<EllipsisTypography>Enter your letter details</EllipsisTypography>
-			<Grid2
+			<Grid
 				container
 				spacing={2}
 			>
-				<Grid2 size={{ md: 6, xs: 12 }}>
+				<Grid size={{ md: 6, xs: 12 }}>
 					<TextField
 						label="Sender's Name"
 						{...register('senderName')}
@@ -57,8 +57,8 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 						fullWidth
 						helperText={errors.senderName?.message}
 					/>
-				</Grid2>
-				<Grid2 size={{ md: 6, xs: 12 }}>
+				</Grid>
+				<Grid size={{ md: 6, xs: 12 }}>
 					<TextField
 						label="Recipient's Name"
 						{...register('recipientName')}
@@ -66,7 +66,7 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 						fullWidth
 						helperText={errors.recipientName?.message}
 					/>
-				</Grid2>
+				</Grid>
 				<TextField
 					label='Date'
 					type='date'
@@ -84,7 +84,7 @@ export const LetterForm: React.FC<LetterFormProps> = () => {
 					multiline
 					rows={6}
 				/>
-			</Grid2>
+			</Grid>
 			<FormActions
 				handleSubmit={handleSubmit}
 				onSubmit={onSubmit}

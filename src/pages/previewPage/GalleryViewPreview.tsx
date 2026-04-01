@@ -1,4 +1,4 @@
-import { Box, Grid2, Typography, useTheme } from '@mui/material';
+import { Box, Grid, Typography, useTheme } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { PreviewActions } from 'src/components';
 import { Templates } from 'src/constants';
@@ -36,7 +36,7 @@ export const GalleryViewPreview: React.FC<GalleryViewPreviewProps> = props => {
 			>
 				{galleryTitle}
 			</Typography>
-			<Grid2
+			<Grid
 				container
 				spacing={2}
 			>
@@ -44,7 +44,7 @@ export const GalleryViewPreview: React.FC<GalleryViewPreviewProps> = props => {
 					const { description, url } = image;
 
 					return (
-						<Grid2
+						<Grid
 							key={JSON.stringify(image)}
 							size={{ md: 4, sm: 6 }}
 						>
@@ -69,10 +69,10 @@ export const GalleryViewPreview: React.FC<GalleryViewPreviewProps> = props => {
 									{description}
 								</Typography>
 							) : null}
-						</Grid2>
+						</Grid>
 					);
 				})}
-			</Grid2>
+			</Grid>
 			<Box sx={{ marginTop: theme.spacing(2) }}>
 				<PreviewActions
 					data={data}

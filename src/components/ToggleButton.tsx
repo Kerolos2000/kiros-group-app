@@ -24,7 +24,7 @@ export const ToggleButton: React.FC<ToggleButtonProps> = () => {
 				backgroundColor: isDark
 					? theme.palette.info.dark
 					: theme.palette.warning.light,
-				borderRadius: theme.shape.borderRadius * 5,
+				borderRadius: theme.shape.borderRadius,
 				display: 'flex',
 				height: theme.spacing(4),
 				position: 'relative',

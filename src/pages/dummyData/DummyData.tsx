@@ -1,4 +1,4 @@
-import { Grid2, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { EllipsisTypography, Loader, StyledForm } from 'src/components';
 
@@ -39,14 +39,14 @@ export const DummyData: React.FC<DummyDataProps> = () => {
 	}
 
 	return (
-		<Grid2
+		<Grid
 			container
 			spacing={2}
 		>
 			{data?.map(item => {
 				const { email, jobTitle, name, phone, website } = item;
 				return (
-					<Grid2
+					<Grid
 						key={JSON.stringify(item)}
 						size={{ md: 4, sm: 6, xs: 12 }}
 					>
@@ -57,9 +57,9 @@ export const DummyData: React.FC<DummyDataProps> = () => {
 							<Typography>Phone: {phone}</Typography>
 							<Typography>Website: {website}</Typography>
 						</StyledForm>
-					</Grid2>
+					</Grid>
 				);
 			})}
-		</Grid2>
+		</Grid>
 	);
 };

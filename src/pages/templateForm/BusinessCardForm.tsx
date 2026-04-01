@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Grid2, TextField } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
@@ -45,11 +45,11 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 	return (
 		<StyledForm>
 			<EllipsisTypography>Enter your business card details</EllipsisTypography>
-			<Grid2
+			<Grid
 				container
 				spacing={2}
 			>
-				<Grid2 size={{ md: 6, xs: 12 }}>
+				<Grid size={{ md: 6, xs: 12 }}>
 					<TextField
 						label='Name'
 						{...register('name')}
@@ -57,8 +57,8 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 						fullWidth
 						helperText={errors.name?.message}
 					/>
-				</Grid2>
-				<Grid2 size={{ md: 6, xs: 12 }}>
+				</Grid>
+				<Grid size={{ md: 6, xs: 12 }}>
 					<TextField
 						label='Job Title'
 						{...register('jobTitle')}
@@ -66,7 +66,7 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 						fullWidth
 						helperText={errors.jobTitle?.message}
 					/>
-				</Grid2>
+				</Grid>
 				<TextField
 					label='Email'
 					{...register('email')}
@@ -88,7 +88,7 @@ export const BusinessCardForm: React.FC<BusinessCardFormProps> = () => {
 					fullWidth
 					helperText={errors.website?.message}
 				/>
-			</Grid2>
+			</Grid>
 			<FormActions
 				handleSubmit={handleSubmit}
 				onSubmit={onSubmit}

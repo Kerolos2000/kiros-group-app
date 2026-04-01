@@ -1,4 +1,4 @@
-import { Box, Grid2, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EllipsisTypography, StyledForm } from 'src/components';
@@ -54,12 +54,12 @@ export const SavedTemplatesPage: React.FC = () => {
 					{businessCardData.length > 0 && (
 						<>
 							<EllipsisTypography>Business Cards</EllipsisTypography>
-							<Grid2
+							<Grid
 								container
 								spacing={2}
 							>
 								{businessCardData.map(data => (
-									<Grid2
+									<Grid
 										key={JSON.stringify(data)}
 										size={{ md: 4, sm: 6, xs: 12 }}
 									>
@@ -72,21 +72,21 @@ export const SavedTemplatesPage: React.FC = () => {
 												}
 											/>
 										</StyledForm>
-									</Grid2>
+									</Grid>
 								))}
-							</Grid2>
+							</Grid>
 						</>
 					)}
 
 					{galleryData.length > 0 && (
 						<>
 							<EllipsisTypography>Galleries</EllipsisTypography>
-							<Grid2
+							<Grid
 								container
 								spacing={2}
 							>
 								{galleryData.map(data => (
-									<Grid2
+									<Grid
 										key={JSON.stringify(data)}
 										size={{ md: 4, sm: 6, xs: 12 }}
 									>
@@ -98,21 +98,21 @@ export const SavedTemplatesPage: React.FC = () => {
 												onEdit={data => handleEdit(Templates.galleryView, data)}
 											/>
 										</StyledForm>
-									</Grid2>
+									</Grid>
 								))}
-							</Grid2>
+							</Grid>
 						</>
 					)}
 
 					{letterData.length > 0 && (
 						<>
 							<EllipsisTypography>Letters</EllipsisTypography>
-							<Grid2
+							<Grid
 								container
 								spacing={2}
 							>
 								{letterData.map(data => (
-									<Grid2
+									<Grid
 										key={JSON.stringify(data)}
 										size={{ md: 4, sm: 6, xs: 12 }}
 									>
@@ -123,9 +123,9 @@ export const SavedTemplatesPage: React.FC = () => {
 												onEdit={data => handleEdit(Templates.letter, data)}
 											/>
 										</StyledForm>
-									</Grid2>
+									</Grid>
 								))}
-							</Grid2>
+							</Grid>
 						</>
 					)}
 				</>

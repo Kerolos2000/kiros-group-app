@@ -3,7 +3,7 @@ import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import {
 	Box,
 	Button,
-	Grid2,
+	Grid,
 	IconButton,
 	TextField,
 	Typography,
@@ -80,12 +80,12 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 						key={field.id}
 						mt={2}
 					>
-						<Grid2
+						<Grid
 							container
 							flex={1}
 							spacing={2}
 						>
-							<Grid2 size={{ md: 6, xs: 12 }}>
+							<Grid size={{ md: 6, xs: 12 }}>
 								<TextField
 									label={`Image URL ${index + 1}`}
 									{...register(`images.${index}.url`)}
@@ -93,15 +93,15 @@ export const GalleryViewForm: React.FC<GalleryViewFormProps> = () => {
 									fullWidth
 									helperText={errors.images?.[index]?.url?.message}
 								/>
-							</Grid2>
-							<Grid2 size={{ md: 6, xs: 12 }}>
+							</Grid>
+							<Grid size={{ md: 6, xs: 12 }}>
 								<TextField
 									label={`Image Description ${index + 1}`}
 									{...register(`images.${index}.description`)}
 									fullWidth
 								/>
-							</Grid2>
-						</Grid2>
+							</Grid>
+						</Grid>
 
 						{fields.length > 4 ? (
 							<IconButton
